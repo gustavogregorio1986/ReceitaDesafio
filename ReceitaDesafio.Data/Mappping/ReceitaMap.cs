@@ -37,7 +37,9 @@ namespace ReceitaDesafio.Data.Mappping
                 .IsRequired()
                 .HasColumnType("datetime");
 
-
+            builder.Property(x => x.Turno)
+                .IsRequired()
+                .HasColumnType("nvarchar(30)");
         }
     }
 }

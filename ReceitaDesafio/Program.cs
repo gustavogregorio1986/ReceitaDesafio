@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using ReceitaDesafio.Data.Data;
+using ReceitaDesafio.Data.Repository;
+using ReceitaDesafio.Data.Repository.Interface;
+using ReceitaDesafio.Service.Service;
+using ReceitaDesafio.Service.Service.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +14,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ReceitaDesafioContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IReceitaRepository, ReceitaRepository>();
+builder.Services.AddScoped<IReceitaService, ReceitaService>();
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 

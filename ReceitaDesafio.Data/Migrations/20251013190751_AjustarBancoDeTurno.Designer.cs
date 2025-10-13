@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ReceitaDesafio.Data.Data;
 
@@ -11,9 +12,11 @@ using ReceitaDesafio.Data.Data;
 namespace ReceitaDesafio.Data.Migrations
 {
     [DbContext(typeof(ReceitaDesafioContext))]
-    partial class ReceitaDesafioContextModelSnapshot : ModelSnapshot
+    [Migration("20251013190751_AjustarBancoDeTurno")]
+    partial class AjustarBancoDeTurno
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

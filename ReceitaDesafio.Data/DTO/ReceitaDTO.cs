@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ReceitaDesafio.Dominio.Dominio
+namespace ReceitaDesafio.Data.DTO
 {
-    public class Receita
+    public class ReceitaDTO
     {
         public int Id { get; set; }
 
