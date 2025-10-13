@@ -37,6 +37,9 @@ namespace ReceitaDesafio.Service.Service
                 return "Noite";
         }
 
-
+        public async Task<List<Receita>> ObterTodasReceitas()
+        {
+            return await _repository.ObterTodasReceitas();
+        }
     }
 }

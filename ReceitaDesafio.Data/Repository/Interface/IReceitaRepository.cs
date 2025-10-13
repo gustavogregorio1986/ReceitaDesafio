@@ -10,5 +10,7 @@ namespace ReceitaDesafio.Data.Repository.Interface
     public interface IReceitaRepository
     {
         Task<Receita> AdicionarReceita(Receita receita);
+
+        Task<List<Receita>> ObterTodasReceitas();
     }
 }

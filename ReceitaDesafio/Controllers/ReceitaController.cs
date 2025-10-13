@@ -39,5 +39,15 @@ namespace ReceitaDesafio.Controllers
 
             return Ok(receitaRetorno);
         }
+
+
+        [HttpGet]
+        [Route("ObterTodasReceitas")]
+        public async Task<IActionResult> ObterTodasReceitas()
+        {
+            var receitas = await _receitaService.ObterTodasReceitas();
+            var receitasDTO = _mapper.Map<List<ReceitaDTO>>(receitas);
+            return Ok(receitasDTO);
+        }
     }
 }

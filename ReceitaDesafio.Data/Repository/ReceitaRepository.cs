@@ -1,4 +1,5 @@
-﻿using ReceitaDesafio.Data.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ReceitaDesafio.Data.Data;
 using ReceitaDesafio.Data.Repository.Interface;
 using ReceitaDesafio.Dominio.Dominio;
 using System;
@@ -23,6 +24,11 @@ namespace ReceitaDesafio.Data.Repository
             await _context.AddAsync(receita);
             await _context.SaveChangesAsync();
             return receita;
+        }
+
+        public async Task<List<Receita>> ObterTodasReceitas()
+        {
+            return await _context.Receitas.ToListAsync();
         }
     }
 }
