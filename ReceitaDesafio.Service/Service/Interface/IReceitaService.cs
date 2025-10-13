@@ -10,5 +10,7 @@ namespace ReceitaDesafio.Service.Service.Interface
     public interface IReceitaService
     {
         Task<Receita> AdicionarReceita(Receita receita);
+
+        string GerarTurno(DateTime dataHora);
     }
 }

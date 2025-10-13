@@ -22,5 +22,21 @@ namespace ReceitaDesafio.Service.Service
         {
             return await _repository.AdicionarReceita(receita);
         }
+
+        public string GerarTurno(DateTime dataHora)
+        {
+            var hora = dataHora.Hour;
+
+            if (hora >= 0 && hora < 6)
+                return "Madrugada";
+            else if (hora >= 6 && hora < 12)
+                return "Manhã";
+            else if (hora >= 12 && hora < 18)
+                return "Tarde";
+            else
+                return "Noite";
+        }
+
+
     }
 }

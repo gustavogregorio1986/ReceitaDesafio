@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ReceitaDesafio.Data.DTO;
 using ReceitaDesafio.Dominio.Dominio;
+using ReceitaDesafio.Service.Service;
 using ReceitaDesafio.Service.Service.Interface;
 
 namespace ReceitaDesafio.Controllers
@@ -20,21 +21,23 @@ namespace ReceitaDesafio.Controllers
             _mapper = mapper;
         }
 
-        [HttpPost]
-        [Route("AdicionarReceita")]
-        public async Task<JsonResult> AdicionarReceita(ReceitaDTO receitaDTO)
+        [HttpPost("AdicionarReceita")]
+        public async Task<IActionResult> AdicionarReceita([FromBody] ReceitaDTO receitaDTO)
         {
-            var receita = new ReceitaDTO()
-            {
-                NomeCliente = receitaDTO.NomeCliente,
-                Valor = receitaDTO.Valor,
-                Descricao = receitaDTO.Descricao,
-                Situacao = receitaDTO.Situacao,
-                DataEmissao = receitaDTO.DataEmissao,
-                Turno = receitaDTO.Turno
-            };
+            if (receitaDTO == null)
+                return BadRequest("Dados da receita não foram fornecidos.");
 
-            return new JsonResult(receita);
+            var receitaMapeada = _mapper.Map<Receita>(receitaDTO);
+
+            receitaMapeada.Turno = receitaMapeada.DataEmissao.HasValue
+                ? _receitaService.GerarTurno(receitaMapeada.DataEmissao.Value)
+                : "Turno indefinido";
+
+            var receitaSalva = await _receitaService.AdicionarReceita(receitaMapeada);
+
+            var receitaRetorno = _mapper.Map<ReceitaDTO>(receitaSalva);
+
+            return Ok(receitaRetorno);
         }
     }
 }
