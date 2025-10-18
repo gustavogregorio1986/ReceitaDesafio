@@ -14,5 +14,7 @@ namespace ReceitaDesafio.Service.Service.Interface
         string GerarTurno(DateTime dataHora);
 
         Task<List<Receita>> ObterTodasReceitas();
+
+        string DeterminarTurno(DateTime? dataEmissao)
     }
 }

@@ -23,6 +23,15 @@ namespace ReceitaDesafio.Service.Service
             return await _repository.AdicionarReceita(receita);
         }
 
+        public string DeterminarTurno(DateTime? dataEmissao)
+        {
+            if (!dataEmissao.HasValue)
+                return "Turno indefinido";
+
+            // Lógica real de turno
+            return GerarTurno(dataEmissao.Value);
+        }
+
         public string GerarTurno(DateTime dataHora)
         {
             var hora = dataHora.Hour;

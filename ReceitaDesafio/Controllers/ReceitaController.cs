@@ -29,9 +29,7 @@ namespace ReceitaDesafio.Controllers
 
             var receitaMapeada = _mapper.Map<Receita>(receitaDTO);
 
-            receitaMapeada.Turno = receitaMapeada.DataEmissao.HasValue
-                ? _receitaService.GerarTurno(receitaMapeada.DataEmissao.Value)
-                : "Turno indefinido";
+            receitaMapeada.Turno = _receitaService.DeterminarTurno(receitaMapeada.DataEmissao);
 
             var receitaSalva = await _receitaService.AdicionarReceita(receitaMapeada);
 
